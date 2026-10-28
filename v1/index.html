@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TokenSaver — descubre qué se come tus tokens</title>
+<meta name="description" content="Analiza gratis el gasto real de tus agentes de código (Codex, Claude Code). Sin subir tu código: el análisis ocurre en tu navegador." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./skin.css?v=mvs48s31" />
+<link rel="canonical" href="https://molina8.github.io/tokensaver/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="TokenSaver" />
+<meta property="og:title" content="TokenSaver — descubre qué se comen tus tokens" />
+<meta property="og:description" content="Analiza gratis el gasto real de tus agentes de código. Sin subir tu código: el análisis ocurre en tu navegador." />
+<meta property="og:url" content="https://molina8.github.io/tokensaver/" />
+<meta property="og:locale" content="es_ES" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="TokenSaver — descubre qué se comen tus tokens" />
+<meta name="twitter:description" content="Analiza gratis el gasto real de tus agentes de código. El arreglo, con tu prompt y tu skill." />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "TokenSaver",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Web",
+      "url": "https://molina8.github.io/tokensaver/",
+      "description": "Analiza los logs locales de agentes de código (Codex, Claude Code, Copilot CLI, Grok Build, Hermes, OpenClaw), calcula el coste real en dólares y entrega el arreglo: pasos, prompt y skill para dejar de gastar de más.",
+      "inLanguage": "es",
+      "featureList": [
+        "Análisis local de logs de agentes de código",
+        "Coste por proyecto, modelo y día",
+        "Diagnóstico de caché de prompt y contexto reenviado",
+        "Prompt personalizado y skill descargable por agente"
+      ],
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Análisis",
+          "price": "0",
+          "priceCurrency": "USD",
+          "description": "Análisis completo sin cuenta"
+        },
+        {
+          "@type": "Offer",
+          "name": "Informe con arreglo",
+          "price": "4.99",
+          "priceCurrency": "USD",
+          "description": "Pasos, prompt personalizado y skill"
+        },
+        {
+          "@type": "Offer",
+          "name": "Pack 10 informes",
+          "price": "15.00",
+          "priceCurrency": "USD",
+          "description": "10 arreglos por 15 USD"
+        }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "name": "TokenSaver",
+      "url": "https://molina8.github.io/tokensaver/",
+      "inLanguage": "es"
+    },
+    {
+      "@type": "Organization",
+      "name": "TokenSaver",
+      "url": "https://molina8.github.io/tokensaver/",
+      "email": "hola@tokenguard.app"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cómo ahorro tokens en Claude Code?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Compacta al 60% de la ventana de contexto con /compact, no edites mensajes anteriores porque rompe la caché de prompt, trabaja una tarea por sesión y desactiva el razonamiento extendido en tareas mecánicas. Estas cuatro medidas suelen recortar entre el 30% y el 50% del gasto de una sesión larga."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Por qué mi agente gasta tantos tokens?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Porque cada turno reenvía todo el contexto anterior. Un turno con 100.000 tokens de contexto cuesta lo mismo que 100.000 tokens de trabajo útil, aunque la respuesta sea de dos líneas. Si la caché de prompt no acierta, ese input se paga a precio completo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto cuesta una sesión larga de Codex o Claude Code?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Una sesión de 302 turnos puede acumular 33 millones de tokens de input, unos 9,44 USD a precios públicos de API, es decir 0,031 USD por turno. La mayor parte no es trabajo nuevo: es contexto reenviado."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué es la caché de prompt y por qué no me acierta?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La caché de prompt reutiliza el prefijo idéntico de una conversación y lo cobra a una fracción del precio, típicamente el 10% del input. Se invalida cuando cambia algo al principio del contexto: editar un mensaje previo, cambiar el system prompt o reordenar archivos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Se suben mis logs a algún servidor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. El análisis se ejecuta en la pestaña del navegador. Si creas cuenta, solo se guardan agregados numéricos (coste, tokens por modelo, códigos de hallazgo) para mostrar el arreglo y el historial."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué agentes soporta TokenSaver?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Codex CLI, Claude Code, GitHub Copilot CLI, Grok Build, Hermes, OpenClaw y cualquier JSONL con contadores de tokens (input_tokens, output_tokens, prompt_tokens o completion_tokens)."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23C6F24E'/><path d='M8 22V10h4l4 7 4-7h4v12h-3.4v-7.6L16.9 21h-1.8l-3.7-6.6V22z' fill='%2308080A'/></svg>" />
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="#top">
+    <span class="brand-mark">◈</span>
+    <span class="brand-name">TokenSaver</span>
+  </a>
+  <nav class="nav-links">
+    <a href="#como">Cómo funciona</a>
+    <a href="#precios">Precios</a>
+    <a href="./guia.html">Guía</a>
+    <button class="btn btn-ghost" id="open-auth">Entrar</button>
+  </nav>
+</header>
+
+<main id="top">
+  <div class="pay-banner" id="pay-banner" hidden>
+    <span class="pay-banner-icon" id="pay-icon">✓</span>
+    <div class="pay-banner-body">
+      <p class="pay-banner-title" id="pay-title">Pago recibido</p>
+      <p class="pay-banner-sub micro" id="pay-sub"></p>
+    </div>
+    <button class="btn btn-primary" id="pay-action" type="button" hidden>Ver mi arreglo</button>
+    <button class="btn btn-ghost" id="pay-retry" type="button" hidden>Reintentar verificación</button>
+  </div>
+
+  <!-- ── HERO ─────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="dot"></span> Para quien programa con agentes</p>
+      <h1>Sabes lo que cuesta cada prompt.<br /><em>O eso crees.</em></h1>
+      <p class="lede">
+        Arrastra los logs de Codex, Claude Code, Copilot, Grok, Hermes u OpenClaw y en 5 segundos ves
+        dónde se fue el dinero: por proyecto, por modelo, por día, y cuánto quemas en contexto
+        que la caché no aprovecha. <strong>Nada sale de tu navegador.</strong>
+      </p>
+      <div class="hero-cta">
+        <a href="#analizar" class="btn btn-primary">Analizar mis logs gratis</a>
+        <a href="#" id="demo-link" class="micro">o mira un informe de ejemplo →</a>
+      </div>
+    </div>
+    <div class="terminal" aria-hidden="true">
+      <div class="terminal-bar">
+        <span></span><span></span><span></span>
+        <p>tokenguard — informe local</p>
+      </div>
+      <pre class="terminal-body"><span class="t-dim">$</span> npx tokenguard scan
+<span class="t-dim">────────────────────────────────────</span>
+turnos          302
+tokens          33,0 M
+coste estimado  <span class="t-accent">$9.445</span>
+caché acierto   <span class="t-warn">91,6%</span>
+
+elysian-essence    <span class="t-accent">$6.646</span>  <span class="t-bar">████████████</span>
+notion-antigravity <span class="t-accent">$2.767</span>  <span class="t-bar">██████</span>
+
+<span class="t-warn">ahorro posible</span>   $3.101
+<span class="t-dim">↳ input sin caché a precio completo</span></pre>
+    </div>
+  </section>
+
+  <!-- ── DROPZONE / DASHBOARD ─────────────────────── -->
+  <section id="analizar" class="analyzer">
+    <div class="section-head">
+      <h2>1. Suelta tus logs</h2>
+      <p>Se leen en tu navegador: no se envían a ningún servidor. Puedes arrastrar la carpeta entera.</p>
+    </div>
+
+    <div class="sources">
+      <span class="chip">Codex · <code>~/.codex/sessions</code></span>
+      <span class="chip">Claude Code · <code>~/.claude/projects</code></span>
+      <span class="chip">Copilot CLI · <code>~/.copilot/session-state</code></span>
+      <span class="chip">Grok Build · <code>~/.grok/sessions</code></span>
+      <span class="chip">Hermes · <code>state.db</code> → exporta con el CLI</span>
+      <span class="chip">OpenClaw · <code>~/.clawdbot</code></span>
+      <span class="chip">Cualquier JSONL con contadores de tokens</span>
+    </div>
+
+    <div class="picker">
+      <button class="btn btn-primary" id="pick-dir" type="button">Elegir carpeta</button>
+      <span class="micro">o arrástrala aquí abajo · también vale seleccionar archivos sueltos</span>
+    </div>
+
+    <label class="drop" id="drop">
+      <input type="file" id="file-input" multiple webkitdirectory directory hidden />
+      <span class="drop-icon">⤓</span>
+      <span class="drop-title">Arrastra aquí tu carpeta de sesiones</span>
+      <span class="drop-sub">o <u>elige los archivos</u> — se leen en memoria, no se envían a ningún servidor</span>
+    </label>
+    <p class="drop-error" id="drop-error" hidden></p>
+
+    <div class="sample-cta" id="sample-cta">
+      <div class="sample-copy">
+        <p class="sample-title">¿Aún no tienes logs a mano?</p>
+        <p class="micro">Mira un informe completo de verdad: 302 turnos reales, con los nombres de proyecto cambiados. Encima puedes probar el botón.</p>
+      </div>
+      <button class="btn btn-primary" id="show-sample" type="button">Ver informe de ejemplo</button>
+    </div>
+
+    <div class="progress" id="progress" hidden>
+      <div class="progress-head">
+        <span id="progress-label">Leyendo archivos…</span>
+        <span class="mono" id="progress-count">0/0</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      <p class="micro" id="progress-sub"></p>
+    </div>
+
+    <div id="dashboard" class="dashboard" hidden>
+      <div class="section-head">
+        <h2>2. Tu informe</h2>
+        <p id="report-meta" class="micro"></p>
+      </div>
+
+      <div class="kpis" id="kpis"></div>
+
+      <div class="future" id="future" hidden>
+        <div class="future-head">
+          <span class="kpi-label">Lo que vas a ahorrar a partir de ahora</span>
+          <span class="pill pill-warn">estimación</span>
+        </div>
+        <div class="future-grid">
+          <div class="future-item">
+            <span class="future-num" id="future-month">—</span>
+            <span class="future-sub">al mes</span>
+          </div>
+          <div class="future-item">
+            <span class="future-num" id="future-year">—</span>
+            <span class="future-sub">al año</span>
+          </div>
+          <div class="future-item">
+            <span class="future-num" id="future-report">—</span>
+            <span class="future-sub">por informe</span>
+          </div>
+        </div>
+        <p class="future-text" id="future-text"></p>
+        <div class="future-bars">
+          <div class="future-bar-row">
+            <span class="future-bar-label">Hoy</span>
+            <span class="future-track"><span class="future-fill now" id="future-now-bar"></span></span>
+            <span class="future-bar-cost" id="future-now">—</span>
+          </div>
+          <div class="future-bar-row">
+            <span class="future-bar-label">Con el arreglo</span>
+            <span class="future-track"><span class="future-fill after" id="future-after-bar"></span></span>
+            <span class="future-bar-cost" id="future-after">—</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h3>Gasto por proyecto</h3>
+          <span class="pill" id="bill-mode">equivalente API</span>
+        </div>
+        <div id="projects" class="bars"></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="panel">
+          <div class="panel-head"><h3>Por modelo</h3></div>
+          <div id="models" class="bars"></div>
+          <p class="micro" id="models-note" hidden></p>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>Por día</h3></div>
+          <div id="days" class="days"></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h3>Qué te está costando</h3>
+          <span class="pill pill-warn">estimación</span>
+        </div>
+        <ul id="findings" class="diag"></ul>
+      </div>
+
+      <div class="panel panel-solutions" id="solutions-panel">
+        <div class="panel-head">
+          <h3>Qué puedes recortar — y cómo arreglarlo</h3>
+          <span class="pill" id="solutions-saving">—</span>
+        </div>
+        <div id="solutions" class="solutions"></div>
+        <div id="solutions-lock" class="lock" hidden>
+          <p class="lock-title" id="lock-title">Los arreglos están a un registro</p>
+          <p class="micro" id="lock-sub">Creas cuenta gratis y ves los pasos exactos y el prompt para tu agente.</p>
+          <button class="btn btn-primary" id="lock-cta" data-mode="auth">Revelar arreglo · $4,99</button>
+        </div>
+        <p class="micro" id="solutions-message" hidden></p>
+      </div>
+
+      <p class="disclaimer">
+        Las cifras son coste equivalente a precio de API con tarifas públicas editables, no tu factura.
+        Si estás en un plan de suscripción, esto es lo que costaría el mismo trabajo por token.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── CÓMO FUNCIONA ────────────────────────────── -->
+  <section id="como" class="how">
+    <div class="section-head">
+      <h2>Cómo funciona</h2>
+      <p>Del análisis al ahorro en cuatro pasos. Los tres primeros son gratis; el cuarto es lo que compras.</p>
+    </div>
+    <ol class="steps steps-4">
+      <li><h3>Lee</h3><p>TokenSaver abre los archivos que tu agente ya escribe en disco y saca de ahí el uso real de tokens. Todo en tu navegador.</p></li>
+      <li><h3>Calcula</h3><p>Convierte tokens en dólares con la tabla de precios por modelo, incluyendo caché y razonamiento.</p></li>
+      <li><h3>Señala</h3><p>Marca dónde se va el dinero: contexto reenviado, razonamiento caro, un proyecto desbocado, modelo equivocado.</p></li>
+      <li class="step-paid"><h3>Te da el arreglo</h3><p>Pasos concretos y un <strong>prompt hecho con tus números</strong>. Lo pegas, y además descargas una <strong>skill</strong> para tu agente: desde ese momento deja de gastar de más.</p></li>
+    </ol>
+    <p class="how-note">↑ Los tres primeros pasos no cuestan nada. El cuarto es lo que se paga, porque es lo que te hace ahorrar a partir de ahora.</p>
+  </section>
+
+  <!-- ── PRECIOS ──────────────────────────────────── -->
+  <section id="precios" class="pricing">
+    <div class="section-head">
+      <h2>Precios</h2>
+      <p>El análisis es gratis y siempre lo será. Se paga el <strong>arreglo</strong>: los pasos y el prompt exacto para tu agente.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price-card">
+        <h3>Análisis</h3>
+        <p class="price">$0<span>/siempre</span></p>
+        <ul>
+          <li>Coste, tokens y proyectos</li>
+          <li>Qué te está costando y cuánto</li>
+          <li>Sin cuenta y sin subir código</li>
+        </ul>
+        <a class="btn btn-ghost" href="#analizar">Analizar</a>
+      </div>
+      <div class="price-card price-card-featured">
+        <div class="badge">Mejor precio</div>
+        <h3>Pack 10 informes</h3>
+        <p class="price">$15<span>= $1,50 c/u</span></p>
+        <ul>
+          <li>10 arreglos completos con prompt</li>
+          <li>Más barato que un café por informe</li>
+          <li>No caducan</li>
+        </ul>
+        <button class="btn btn-primary" data-checkout="pack10">Comprar pack</button>
+      </div>
+      <div class="price-card">
+        <h3>Informe suelto</h3>
+        <p class="price">$4,99<span>/informe</span></p>
+        <ul>
+          <li>1 arreglo completo con prompt</li>
+          <li>Sin suscripción: pagas el que usas</li>
+          <li>Cuenta gratuita para guardar tus informes</li>
+        </ul>
+        <button class="btn btn-ghost" data-checkout="single">Comprar informe</button>
+      </div>
+    </div>
+    <p class="micro center" id="checkout-note"></p>
+    <p class="micro center">Los créditos se suman a tu cuenta. Cada informe revelado gasta uno; los análisis siguen siendo gratis.</p>
+  </section>
+
+  <!-- ── MI CUENTA ─────────────────────────────────── -->
+  <section id="cuenta" class="account" hidden>
+    <div class="section-head">
+      <h2>Mi cuenta</h2>
+      <p>Tus informes quedan guardados con su arreglo propio: cada fix es tuyo, con tus proyectos y tus modelos.</p>
+    </div>
+    <div class="account-bar">
+      <span id="account-email" class="mono micro"></span>
+      <span class="pill" id="account-balance">—</span>
+      <button class="btn btn-ghost" id="logout" type="button">Salir</button>
+    </div>
+    <div id="reports-list" class="reports"></div>
+  </section>
+
+  <!-- ── PREGUNTAS FRECUENTES (texto plano, citable) ─────────────── -->
+  <section id="faq" class="faq">
+    <div class="section-head">
+      <h2>Preguntas frecuentes</h2>
+      <p>Respuestas cortas, con los números del análisis real de 302 turnos.</p>
+    </div>
+
+    <details class="faq-item" open>
+      <summary>¿Cómo ahorro tokens en Claude Code?</summary>
+      <p>Compacta al 60% de la ventana de contexto con <code>/compact</code>, no edites mensajes anteriores (rompe la caché de prompt), trabaja una tarea por sesión y desactiva el razonamiento extendido en tareas mecánicas. Estas cuatro medidas suelen recortar entre el 30% y el 50% del gasto de una sesión larga.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Por qué mi agente gasta tantos tokens?</summary>
+      <p>Porque cada turno reenvía todo el contexto anterior. Un turno con 100.000 tokens de contexto cuesta lo mismo que 100.000 tokens de trabajo útil, aunque la respuesta sea de dos líneas. Si la caché de prompt no acierta, ese input se paga a precio completo.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Cuánto cuesta una sesión larga de Codex o Claude Code?</summary>
+      <p>Una sesión de 302 turnos puede acumular <strong>33 millones de tokens</strong> de input: unos <strong>9,44 USD</strong> a precios públicos de API, o <strong>0,031 USD por turno</strong>. La mayor parte no es trabajo nuevo, es contexto reenviado.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Qué es la caché de prompt y por qué no me acierta?</summary>
+      <p>Reutiliza el prefijo idéntico de una conversación y lo cobra a una fracción del precio (típicamente el 10% del input). Se invalida cuando cambia algo al principio del contexto: editar un mensaje previo, cambiar el system prompt o reordenar archivos.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Se suben mis logs a algún servidor?</summary>
+      <p>No. El análisis se ejecuta en la pestaña del navegador y se puede cortar la red sin que deje de funcionar. Si creas cuenta, solo se guardan agregados numéricos: coste, tokens por modelo y códigos de hallazgo.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Qué agentes soporta TokenSaver?</summary>
+      <p>Codex CLI, Claude Code, GitHub Copilot CLI, Grok Build, Hermes, OpenClaw y cualquier JSONL con contadores de tokens (<code>input_tokens</code>, <code>output_tokens</code>, <code>prompt_tokens</code> o <code>completion_tokens</code>).</p>
+    </details>
+
+    <p class="micro">Guía completa con metodología y tabla de costes: <a href="./guia.html">cómo ahorrar tokens en agentes de código</a>.</p>
+  </section>
+
+  <!-- ── PRIVACIDAD ───────────────────────────────── -->
+  <section id="datos" class="privacy">
+    <div class="section-head">
+      <h2>Tus datos</h2>
+      <p>Lo que se queda en tu ordenador y lo que viaja, sin letra pequeña.</p>
+    </div>
+    <div class="privacy-grid">
+      <div class="privacy-card">
+        <h3>No sale de tu navegador</h3>
+        <p>Tus logs, tu código y tus prompts <strong>no se suben</strong>. El análisis se ejecuta en la pestaña con JavaScript local: puedes cortar la red y sigue funcionando.</p>
+      </div>
+      <div class="privacy-card">
+        <h3>Si creas cuenta, esto es lo único que se guarda</h3>
+        <p>Números agregados: coste, tokens por modelo, códigos de hallazgo y fecha. <strong>Nunca</strong> nombres de archivo, rutas, mensajes, código ni claves.</p>
+      </div>
+      <div class="privacy-card">
+        <h3>Para qué</h3>
+        <p>Para mostrarte el arreglo, llevar tu saldo de informes y enviarte el aviso de gasto si lo activas. Nada de publicidad ni venta a terceros.</p>
+      </div>
+      <div class="privacy-card">
+        <h3>Tus derechos</h3>
+        <p>Borrado de cuenta y datos cuando quieras, escribiendo a <a href="mailto:hola@tokenguard.app">hola@tokenguard.app</a>. Sin cuenta, no hay nada guardado. Cumplimos RGPD: base legal, consentimiento y derecho de supresión.</p>
+      </div>
+    </div>
+    <p class="micro">Los importes son estimaciones a precio de API con tarifas públicas editables, no una factura.</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>TokenSaver · producto de la casa · <span class="mono">v0.1</span></p>
+  <p class="micro">No subimos tu código. Los informes se calculan en tu navegador.</p>
+</footer>
+
+<!-- ── MODAL AUTH ─────────────────────────────────── -->
+<dialog id="auth-dialog" class="dialog">
+  <button class="dialog-close" id="close-auth" aria-label="Cerrar">×</button>
+  <h2 id="auth-title">Entrar</h2>
+  <p class="micro" id="auth-sub">Guarda tus informes y recibe alertas cuando el gasto se dispare.</p>
+  <form id="auth-form" class="form">
+    <label>Email <input type="email" name="email" required autocomplete="email" placeholder="tu@email.com" /></label>
+    <label>Contraseña <input type="password" name="password" required minlength="8" autocomplete="current-password" placeholder="mínimo 8 caracteres" /></label>
+
+    <!-- solo al crear cuenta -->
+    <div class="signup-only" data-signup-only hidden>
+      <label>Repite la contraseña
+        <input type="password" name="password2" autocomplete="new-password" placeholder="otra vez, igual" />
+      </label>
+      <ul class="pw-rules" id="pw-rules">
+        <li data-rule="len"><span class="dot"></span>8 caracteres mínimo</li>
+        <li data-rule="upper"><span class="dot"></span>Una mayúscula</li>
+        <li data-rule="num"><span class="dot"></span>Un número</li>
+        <li data-rule="match"><span class="dot"></span>Las dos contraseñas coinciden</li>
+      </ul>
+    </div>
+
+    <button class="btn btn-primary" type="submit" id="auth-submit">Entrar</button>
+  </form>
+  <p class="auth-msg" id="auth-msg" hidden></p>
+  <p class="micro center"><span id="toggle-prefix">¿No tienes cuenta?</span> <a href="#" id="toggle-mode">Crear una</a></p>
+</dialog>
+
+<script type="module" src="./app.js?v=mvs48s31"></script>
+</body>
+</html>

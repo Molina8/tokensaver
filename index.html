@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+<title>TokenSaver — cómo ahorrar tokens en Codex, Claude Code y Copilot</title>
+<meta name="description" content="Calcula en tu navegador cuánto gastan tus agentes de código (Codex, Claude Code, Copilot, Grok, Hermes, OpenClaw): coste por proyecto, modelo y día, y el prompt exacto con tu skill para dejar de gastar de más. Análisis gratis, arreglo 4,99 $, pack de 10 por 14,99 $." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./skin.css?v=mvsn4t7b" />
+<link rel="canonical" href="https://tokensaver.es/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="TokenSaver" />
+<meta property="og:title" content="TokenSaver — descubre qué se comen tus tokens y cómo ahorrarlos" />
+<meta property="og:description" content="Analiza gratis el gasto real de tus agentes de código. Sin subir tu código: el análisis ocurre en tu navegador." />
+<meta property="og:url" content="https://tokensaver.es/" />
+<meta property="og:locale" content="es_ES" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="TokenSaver — descubre qué se comen tus tokens" />
+<meta name="twitter:description" content="Analiza gratis el gasto real de tus agentes de código. El arreglo, con tu prompt y tu skill." />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "TokenSaver",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Web",
+      "url": "https://tokensaver.es/",
+      "description": "Analiza los logs locales de agentes de código (Codex, Claude Code, Copilot CLI, Grok Build, Hermes, OpenClaw), calcula el coste real en dólares y entrega el arreglo: pasos, prompt y skill para dejar de gastar de más.",
+      "inLanguage": "es",
+      "softwareVersion": "0.1",
+      "isAccessibleForFree": true,
+      "image": "https://tokensaver.es/assets/og-image-1200x630.png",
+      "screenshot": "https://tokensaver.es/assets/og-image-1200x630.png",
+      "browserRequirements": "Requiere JavaScript. El análisis se ejecuta en el navegador.",
+      "operatingSystem": "Web",
+      "featureList": [
+        "Análisis local de logs de agentes de código",
+        "Coste por proyecto, modelo y día",
+        "Diagnóstico de caché de prompt y contexto reenviado",
+        "Prompt personalizado y skill descargable por agente"
+      ],
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Análisis",
+          "price": "0",
+          "priceCurrency": "USD",
+          "description": "Análisis completo sin cuenta"
+        },
+        {
+          "@type": "Offer",
+          "name": "Informe con arreglo",
+          "price": "4.99",
+          "priceCurrency": "USD",
+          "description": "Pasos, prompt personalizado y skill"
+        },
+        {
+          "@type": "Offer",
+          "name": "Pack 10 informes",
+          "price": "14.99",
+          "priceCurrency": "USD",
+          "description": "10 arreglos por 14,99 USD"
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "name": "Cómo saber qué se come tus tokens y arreglarlo",
+      "description": "Cuatro pasos: leer los logs locales, calcular el coste, señalar dónde se va el dinero y entregar el arreglo con prompt y skill.",
+      "totalTime": "PT5M",
+      "tool": [{ "@type": "HowToTool", "name": "Navegador con JavaScript" }],
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Leer los logs",
+          "text": "Arrastra la carpeta de sesiones de tu agente (Codex, Claude Code, Copilot, Grok, Hermes u OpenClaw). Se leen en el navegador: nada se sube.",
+          "url": "https://tokensaver.es/#analizar"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Calcular el coste",
+          "text": "TokenSaver convierte los tokens en dólares con la tabla de precios por modelo, incluyendo caché de prompt y razonamiento.",
+          "url": "https://tokensaver.es/#analizar"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Señalar el desperdicio",
+          "text": "Marca dónde se va el dinero: contexto reenviado sin caché, razonamiento caro en tareas mecánicas, un proyecto desbocado o un modelo equivocado para la tarea.",
+          "url": "https://tokensaver.es/#analizar"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Entregar el arreglo",
+          "text": "Pasos concretos, un prompt hecho con tus números y una skill descargable para que el agente deje de gastar de más en las próximas sesiones.",
+          "url": "https://tokensaver.es/#precios"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://tokensaver.es/" },
+        { "@type": "ListItem", "position": 2, "name": "Guía", "item": "https://tokensaver.es/guia.html" }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "name": "TokenSaver",
+      "url": "https://tokensaver.es/",
+      "inLanguage": "es"
+    },
+    {
+      "@type": "Organization",
+      "name": "TokenSaver",
+      "logo": "https://tokensaver.es/assets/icon-512.png",
+      "url": "https://tokensaver.es/",
+      "email": "hola@tokenguard.app"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cómo ahorro tokens en Claude Code?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Compacta al 60% de la ventana de contexto con /compact, no edites mensajes anteriores porque rompe la caché de prompt, trabaja una tarea por sesión y desactiva el razonamiento extendido en tareas mecánicas. Estas cuatro medidas suelen recortar entre el 30% y el 50% del gasto de una sesión larga."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Por qué mi agente gasta tantos tokens?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Porque cada turno reenvía todo el contexto anterior. Un turno con 100.000 tokens de contexto cuesta lo mismo que 100.000 tokens de trabajo útil, aunque la respuesta sea de dos líneas. Si la caché de prompt no acierta, ese input se paga a precio completo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto cuesta una sesión larga de Codex o Claude Code?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Una sesión de 302 turnos puede acumular 33 millones de tokens de input, unos 9,44 USD a precios públicos de API, es decir 0,031 USD por turno. La mayor parte no es trabajo nuevo: es contexto reenviado."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué es la caché de prompt y por qué no me acierta?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La caché de prompt reutiliza el prefijo idéntico de una conversación y lo cobra a una fracción del precio, típicamente el 10% del input. Se invalida cuando cambia algo al principio del contexto: editar un mensaje previo, cambiar el system prompt o reordenar archivos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Se suben mis logs a algún servidor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. El análisis se ejecuta en la pestaña del navegador. Si creas cuenta, solo se guardan agregados numéricos (coste, tokens por modelo, códigos de hallazgo) para mostrar el arreglo y el historial."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto cuesta TokenSaver y qué incluye?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El análisis es gratis y sin cuenta. Se paga el arreglo: 4,99 USD por informe o 14,99 USD el pack de 10, menos de 1,50 USD por informe. Cada arreglo incluye los pasos, el prompt con los datos reales del proyecto y una skill descargable para el agente. Sin suscripción."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Sirve para Hermes o OpenClaw, no solo para Codex y Claude Code?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Lee Codex CLI, Claude Code, GitHub Copilot CLI, Grok Build, Hermes, OpenClaw y cualquier JSONL con contadores de tokens (input_tokens/output_tokens o prompt_tokens/completion_tokens). Los agentes con muchas herramientas suelen tener el coste por turno más alto, así que el ahorro detectado es mayor."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué agentes soporta TokenSaver?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Codex CLI, Claude Code, GitHub Copilot CLI, Grok Build, Hermes, OpenClaw y cualquier JSONL con contadores de tokens (input_tokens, output_tokens, prompt_tokens o completion_tokens)."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="icon" href="./assets/favicon.ico" sizes="any" />
+<link rel="icon" type="image/svg+xml" href="./assets/icon.svg" />
+<link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
+<link rel="manifest" href="./assets/site.webmanifest" />
+<meta name="theme-color" content="#0a0d12" />
+<meta property="og:image" content="https://tokensaver.es/assets/og-image-1200x630.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="TokenSaver — descubre qué se comen tus tokens" />
+<meta name="twitter:image" content="https://tokensaver.es/assets/og-image-1200x630.png" />
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="#top">
+    <img class="brand-mark" src="./assets/icon.svg" alt="" width="24" height="24" />
+    <span class="brand-name">Token<span class="brand-name-soft">Saver</span></span>
+  </a>
+  <nav class="nav-links">
+    <a href="#como">Cómo funciona</a>
+    <a href="#precios">Precios</a>
+    <a href="./guia.html">Guía</a>
+    <button class="btn btn-ghost" id="open-auth">Entrar</button>
+  </nav>
+</header>
+
+<main id="top">
+  <div class="pay-banner" id="pay-banner" hidden>
+    <span class="pay-banner-icon" id="pay-icon">✓</span>
+    <div class="pay-banner-body">
+      <p class="pay-banner-title" id="pay-title">Pago recibido</p>
+      <p class="pay-banner-sub micro" id="pay-sub"></p>
+    </div>
+    <button class="btn btn-primary" id="pay-action" type="button" hidden>Ver mi arreglo</button>
+    <button class="btn btn-ghost" id="pay-retry" type="button" hidden>Reintentar verificación</button>
+  </div>
+
+  <!-- ── HERO ─────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="dot"></span> Para quien programa con agentes</p>
+      <h1>Sabes lo que cuesta cada prompt.<br /><em>O eso crees.</em></h1>
+      <p class="lede">
+        Arrastra los logs de Codex, Claude Code, Copilot, Grok, Hermes u OpenClaw y en 5 segundos ves
+        dónde se fue el dinero: por proyecto, por modelo, por día, y cuánto quemas en contexto
+        que la caché no aprovecha. <strong>Nada sale de tu navegador.</strong>
+      </p>
+      <div class="hero-cta">
+        <button class="btn btn-primary" id="hero-cta" type="button">Soltar mis logs · gratis</button>
+        <a href="#" id="demo-link" class="micro">o mira un informe de ejemplo →</a>
+      </div>
+      <p class="hero-stat">
+        <span class="pulse" aria-hidden="true"></span>
+        <span class="hero-stat-text">De media, <b id="hero-waste">40%</b> de lo que pagas es contexto que ya enviaste antes</span>
+      </p>
+    </div>
+    <div class="terminal" aria-hidden="true">
+      <div class="terminal-bar">
+        <span></span><span></span><span></span>
+        <p>tokensaver — informe local</p>
+      </div>
+      <pre class="terminal-body"><span class="t-dim">$</span> npx tokensaver scan
+<span class="t-dim">────────────────────────────────────</span>
+turnos          302
+tokens          33,0 M
+coste estimado  <span class="t-accent">$9.445</span>
+caché acierto   <span class="t-warn">91,6%</span>
+
+elysian-essence    <span class="t-accent">$6.646</span>  <span class="t-bar">████████████</span>
+notion-antigravity <span class="t-accent">$2.767</span>  <span class="t-bar">██████</span>
+
+<span class="t-warn">ahorro posible</span>   $3.101  <span class="t-badge">−32,8%</span>
+<span class="t-dim">↳ input sin caché a precio completo</span></pre>
+    </div>
+  </section>
+
+  <!-- ── DROPZONE / DASHBOARD ─────────────────────── -->
+  <section id="analizar" class="analyzer">
+    <div class="section-head">
+      <h2>1. Suelta tus logs</h2>
+      <p>Se leen en tu navegador: no se envían a ningún servidor. Puedes arrastrar la carpeta entera.</p>
+    </div>
+
+    <div class="sources">
+      <span class="chip"><span class="mark">CX</span>Codex · <code>~/.codex/sessions</code></span>
+      <span class="chip"><span class="mark">CC</span>Claude Code · <code>~/.claude/projects</code></span>
+      <span class="chip"><span class="mark">CP</span>Copilot CLI · <code>~/.copilot/session-state</code></span>
+      <span class="chip chip-extra"><span class="mark">GK</span>Grok Build · <code>~/.grok/sessions</code></span>
+      <span class="chip chip-extra"><span class="mark">HM</span>Hermes · <code>state.db</code></span>
+      <span class="chip chip-extra"><span class="mark">OC</span>OpenClaw · <code>~/.clawdbot</code></span>
+      <span class="chip chip-extra">Cualquier JSONL con contadores de tokens</span>
+      <button class="sources-more" id="sources-more" type="button" aria-expanded="false" aria-controls="fuentes-extra">
+        Ver 4 más ↓
+      </button>
+    </div>
+
+    <div class="picker">
+      <button class="btn btn-primary" id="pick-dir" type="button">Elegir carpeta</button>
+      <span class="micro">o arrástrala aquí abajo · también vale seleccionar archivos sueltos</span>
+    </div>
+
+    <label class="drop" id="drop">
+      <input type="file" id="file-input" multiple webkitdirectory directory hidden />
+      <span class="drop-icon">⤓</span>
+      <span class="drop-title">Arrastra aquí tu carpeta de sesiones</span>
+      <span class="drop-sub">o <u>elige los archivos</u> — se leen en memoria, no se envían a ningún servidor</span>
+    </label>
+    <p class="drop-error" id="drop-error" hidden></p>
+
+    <div class="sample-cta" id="sample-cta">
+      <div class="sample-copy">
+        <p class="sample-title">¿Aún no tienes logs a mano?</p>
+        <p class="micro">Mira un informe completo de verdad: 302 turnos reales, con los nombres de proyecto cambiados. Encima puedes probar el botón.</p>
+      </div>
+      <button class="btn btn-primary" id="show-sample" type="button">Ver informe de ejemplo</button>
+    </div>
+
+    <div class="progress" id="progress" hidden>
+      <div class="progress-head">
+        <span id="progress-label">Leyendo archivos…</span>
+        <span class="mono" id="progress-count">0/0</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      <p class="micro" id="progress-sub"></p>
+    </div>
+
+    <div id="dashboard" class="dashboard" hidden>
+      <div class="section-head">
+        <h2>2. Tu informe</h2>
+        <p id="report-meta" class="micro"></p>
+      </div>
+
+      <div class="kpis" id="kpis"></div>
+
+      <div class="future" id="future" hidden>
+        <div class="future-head">
+          <span class="kpi-label">Lo que vas a ahorrar a partir de ahora</span>
+          <span class="pill pill-warn">estimación</span>
+        </div>
+        <div class="future-grid">
+          <div class="future-item">
+            <span class="future-num" id="future-month">—</span>
+            <span class="future-sub">al mes</span>
+          </div>
+          <div class="future-item">
+            <span class="future-num" id="future-year">—</span>
+            <span class="future-sub">al año</span>
+          </div>
+          <div class="future-item">
+            <span class="future-num" id="future-report">—</span>
+            <span class="future-sub">por informe</span>
+          </div>
+        </div>
+        <p class="future-text" id="future-text"></p>
+        <div class="future-bars">
+          <div class="future-bar-row">
+            <span class="future-bar-label">Hoy</span>
+            <span class="future-track"><span class="future-fill now" id="future-now-bar"></span></span>
+            <span class="future-bar-cost" id="future-now">—</span>
+          </div>
+          <div class="future-bar-row">
+            <span class="future-bar-label">Con el arreglo</span>
+            <span class="future-track"><span class="future-fill after" id="future-after-bar"></span></span>
+            <span class="future-bar-cost" id="future-after">—</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h3>Gasto por proyecto</h3>
+          <span class="pill" id="bill-mode">equivalente API</span>
+        </div>
+        <div id="projects" class="bars"></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="panel">
+          <div class="panel-head"><h3>Por modelo</h3></div>
+          <div id="models" class="bars"></div>
+          <p class="micro" id="models-note" hidden></p>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>Por día</h3></div>
+          <div id="days" class="days"></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h3>Qué te está costando</h3>
+          <span class="pill pill-warn">estimación</span>
+        </div>
+        <ul id="findings" class="diag"></ul>
+      </div>
+
+      <div class="panel panel-solutions" id="solutions-panel">
+        <div class="panel-head">
+          <h3>Qué puedes recortar — y cómo arreglarlo</h3>
+          <span class="pill" id="solutions-saving">—</span>
+        </div>
+        <div id="solutions" class="solutions"></div>
+        <div id="solutions-lock" class="lock" hidden>
+          <p class="lock-title" id="lock-title">Los arreglos están a un registro</p>
+          <p class="micro" id="lock-sub">Creas cuenta gratis y ves los pasos exactos y el prompt para tu agente.</p>
+          <button class="btn btn-primary" id="lock-cta" data-mode="auth">Revelar arreglo · $4,99</button>
+        </div>
+        <p class="micro" id="solutions-message" hidden></p>
+      </div>
+
+      <p class="disclaimer">
+        Las cifras son coste equivalente a precio de API con tarifas públicas editables, no tu factura.
+        Si estás en un plan de suscripción, esto es lo que costaría el mismo trabajo por token.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── CÓMO FUNCIONA ────────────────────────────── -->
+  <section id="como" class="how">
+    <div class="section-head">
+      <h2>Cómo funciona</h2>
+      <p>Del análisis al ahorro en cuatro pasos. Los tres primeros son gratis; el cuarto es lo que compras.</p>
+    </div>
+    <ol class="steps steps-4">
+      <li><h3>Lee</h3><p>TokenSaver abre los archivos que tu agente ya escribe en disco y saca de ahí el uso real de tokens. Todo en tu navegador.</p></li>
+      <li><h3>Calcula</h3><p>Convierte tokens en dólares con la tabla de precios por modelo, incluyendo caché y razonamiento.</p></li>
+      <li><h3>Señala</h3><p>Marca dónde se va el dinero: contexto reenviado, razonamiento caro, un proyecto desbocado, modelo equivocado.</p></li>
+      <li class="step-paid">
+        <span class="step-badge">Resultado de pago · skill descargable</span>
+        <h3>Te da el arreglo</h3><p>Pasos concretos y un <strong>prompt hecho con tus números</strong>. Lo pegas, y además descargas una <strong>skill</strong> para tu agente: desde ese momento deja de gastar de más.</p>
+        <a class="step-link" href="#precios">Qué incluye y cuánto cuesta →</a>
+      </li>
+    </ol>
+    <p class="how-note">↑ Los tres primeros pasos no cuestan nada. El cuarto es lo que se paga, porque es lo que te hace ahorrar a partir de ahora.</p>
+
+    <div class="compare" id="compare">
+      <div class="compare-tabs" role="tablist" aria-label="Antes y después del arreglo">
+        <button class="compare-tab" role="tab" aria-selected="true" aria-controls="cmp-before" id="tab-before">Antes</button>
+        <button class="compare-tab" role="tab" aria-selected="false" aria-controls="cmp-after" id="tab-after">Después</button>
+      </div>
+      <div class="compare-body">
+        <div class="compare-pane" id="cmp-before" role="tabpanel" aria-labelledby="tab-before" data-state="before">
+          <h4>Lo que tu agente recibe hoy</h4>
+          <p>Contexto entero reenviado en cada turno, sin caché y con el modelo caro para todo.</p>
+          <pre class="compare-pre">system: [reglas 4.000 tok] + [árbol del repo 9.200 tok]
+user:   "arregla el botón de pago"     ← petición real: 14 tok
+agent:  reenvía TODO el contexto otra vez …
+        turno 118 · 61.400 tok · caché 12% · <span class="t-accent">$0,184</span></pre>
+          <p class="compare-cost bad">Coste del turno: <b>$0,184</b> · 302 turnos = $9,44</p>
+        </div>
+        <div class="compare-pane" id="cmp-after" role="tabpanel" aria-labelledby="tab-after" data-state="after" hidden>
+          <h4>Lo que recibe con el arreglo</h4>
+          <p>El prompt compacta el contexto, la skill fija las reglas y el agente deja de reenviarlo todo.</p>
+          <pre class="compare-pre">system: [reglas 700 tok] + índice de archivos bajo demanda
+user:   "arregla el botón de pago · solo src/checkout"
+agent:  lee 2 archivos, edita, cierra tarea
+        turno 118 · 14.900 tok · caché 88% · <span class="t-warn">$0,041</span></pre>
+          <p class="compare-cost good">Coste del turno: <b>$0,041</b> · mismo trabajo, −78%</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRECIOS ──────────────────────────────────── -->
+  <section id="precios" class="pricing">
+    <div class="section-head">
+      <h2>Precios</h2>
+      <p>El análisis es gratis y siempre lo será. Se paga el <strong>arreglo</strong>: los pasos y el prompt exacto para tu agente.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price-card">
+        <h3>Análisis</h3>
+        <p class="price">$0<span>/siempre</span></p>
+        <ul>
+          <li>Coste, tokens y proyectos</li>
+          <li>Qué te está costando y cuánto</li>
+          <li>Sin cuenta y sin subir código</li>
+          <li>Para siempre, sin tarjeta</li>
+        </ul>
+        <a class="btn btn-ghost" href="#analizar">Analizar</a>
+      </div>
+      <div class="price-card price-card-featured">
+        <div class="badge">Mejor precio</div>
+        <h3>Pack 10 informes</h3>
+        <p class="price">$14,99<span>= menos de $1,50 c/u</span></p>
+        <ul>
+          <li>10 arreglos completos: pasos + prompt</li>
+          <li>Skill para Cursor, Claude Code, Codex, Cline o Copilot</li>
+          <li>Menos de $1,50 por informe · no caducan</li>
+        </ul>
+        <button class="btn btn-primary" data-checkout="pack10">Comprar pack</button>
+      </div>
+      <div class="price-card">
+        <h3>Informe suelto</h3>
+        <p class="price">$4,99<span>/informe</span></p>
+        <ul>
+          <li>1 arreglo completo: pasos + prompt</li>
+          <li>Skill descargable para tu agente</li>
+          <li>Sin suscripción: pagas el que usas</li>
+        </ul>
+        <button class="btn btn-ghost" data-checkout="single">Comprar informe</button>
+      </div>
+    </div>
+    <p class="micro center" id="checkout-note"></p>
+    <p class="micro center">Los créditos se suman a tu cuenta. Cada informe revelado gasta uno; los análisis siguen siendo gratis.</p>
+    <p class="micro center account-hint">¿Compraste sin cuenta? <a href="#" id="claim-hint">Entra con el mismo correo</a> y tus informes aparecen solos.</p>
+  </section>
+
+  <!-- ── MI CUENTA ─────────────────────────────────── -->
+  <section id="cuenta" class="account" hidden>
+    <div class="section-head">
+      <h2>Mi cuenta</h2>
+      <p>Tus informes quedan guardados con su arreglo propio: cada fix es tuyo, con tus proyectos y tus modelos.</p>
+    </div>
+    <div class="account-bar">
+      <span id="account-email" class="mono micro"></span>
+      <span class="pill" id="account-balance">—</span>
+      <button class="btn btn-ghost" id="logout" type="button">Salir</button>
+    </div>
+    <div id="reports-list" class="reports"></div>
+  </section>
+
+
+  <!-- ── AEO: respuestas por agente, citables y con cifras ────────── -->
+  <section id="agentes" class="how agents-aeo">
+    <div class="section-head">
+      <h2>Cómo ahorrar tokens en cada agente</h2>
+      <p>Respuestas cortas y con cifras reales, agente por agente. Todas nacen del mismo problema: cada turno reenvía el contexto completo y la caché de prompt se rompe en cuanto cambia el prefijo.</p>
+    </div>
+
+    <div class="aeo-grid">
+      <article>
+        <h3>Cómo ahorrar tokens en Claude Code</h3>
+        <p>Compacta al 60% de la ventana de contexto con <code>/compact</code>, no edites mensajes anteriores (rompe la caché de prompt), trabaja una tarea por sesión y desactiva el razonamiento extendido en tareas mecánicas. En sesiones largas, estas cuatro medidas recortan entre el 30% y el 50% del gasto.</p>
+      </article>
+      <article>
+        <h3>Cómo ahorrar tokens en Codex CLI</h3>
+        <p>Una sesión de 302 turnos puede acumular 33 millones de tokens de input: 9,44 USD a precio de API, o 0,031 USD por turno. El arreglo: cerrar la sesión al terminar la tarea, acotar el contexto a los archivos que tocas y no reabrir con <code>codex resume</code> conversaciones ya terminadas.</p>
+      </article>
+      <article>
+        <h3>Cómo ahorrar tokens en GitHub Copilot CLI</h3>
+        <p>Cada evento de la sesión reenvía el historial completo. Mantén el scope en un directorio, evita pegar archivos enteros cuando basta una referencia y usa el modo sin agente para preguntas sueltas. El registro vive en <code>~/.copilot/session-state/&lt;uuid&gt;/events.jsonl</code>.</p>
+      </article>
+      <article>
+        <h3>Cómo ahorrar tokens en Grok Build</h3>
+        <p>Las actualizaciones de sesión van a <code>~/.grok/sessions</code>. El gasto se dispara cuando el agente relee los mismos archivos en turnos consecutivos: fija el objetivo en el primer mensaje y evita reformular la misma petición, porque cada reformulación añade contexto sin añadir información.</p>
+      </article>
+      <article>
+        <h3>Cómo ahorrar tokens en Hermes y OpenClaw</h3>
+        <p>Los agentes con muchas herramientas son los que más gastan: cada llamada devuelve salida que se queda en el contexto para siempre. Limita el número de herramientas activas por tarea, resume la salida larga antes de seguir y revisa el gasto por sesión: es habitual encontrar aquí los costes por turno más altos.</p>
+      </article>
+      <article>
+        <h3>Qué modelo usar para cada tarea</h3>
+        <p>El error más caro es usar el modelo grande para trabajo mecánico. Si la mayoría de turnos de un modelo caro no usan herramientas (formato, renombrados, preguntas), son candidatos a un modelo barato. La diferencia típica entre el modelo más caro y uno medio es de 5 a 15 veces por token.</p>
+      </article>
+    </div>
+
+    <div class="panel aeo-table">
+      <div class="panel-head">
+        <h3>Coste real medido en una sesión de Codex</h3>
+        <span class="pill">302 turnos · datos anonimizados</span>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Dato</th><th>Valor</th><th>Qué significa</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Tokens de input</td><td class="mono">33,0 M</td><td>Lo que el agente reenvió al modelo</td></tr>
+          <tr><td>Coste equivalente API</td><td class="mono">9,44 USD</td><td>A precios públicos, no la factura del plan</td></tr>
+          <tr><td>Coste por turno</td><td class="mono">0,031 USD</td><td>Media de la sesión completa</td></tr>
+          <tr><td>Acierto de caché</td><td class="mono">91,6 %</td><td>El 8,4% restante se paga a precio completo</td></tr>
+          <tr><td>Ahorro detectado</td><td class="mono mint">3.101 USD</td><td>Solo en esa sesión, sin cambiar de modelo</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── PREGUNTAS FRECUENTES (texto plano, citable) ─────────────── -->
+  <section id="faq" class="faq">
+    <div class="section-head">
+      <h2>Preguntas frecuentes</h2>
+      <p>Respuestas cortas, con los números del análisis real de 302 turnos.</p>
+    </div>
+
+    <details class="faq-item" open>
+      <summary>¿Cómo ahorro tokens en Claude Code?</summary>
+      <p>Compacta al 60% de la ventana de contexto con <code>/compact</code>, no edites mensajes anteriores (rompe la caché de prompt), trabaja una tarea por sesión y desactiva el razonamiento extendido en tareas mecánicas. Estas cuatro medidas suelen recortar entre el 30% y el 50% del gasto de una sesión larga.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Por qué mi agente gasta tantos tokens?</summary>
+      <p>Porque cada turno reenvía todo el contexto anterior. Un turno con 100.000 tokens de contexto cuesta lo mismo que 100.000 tokens de trabajo útil, aunque la respuesta sea de dos líneas. Si la caché de prompt no acierta, ese input se paga a precio completo.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Cuánto cuesta una sesión larga de Codex o Claude Code?</summary>
+      <p>Una sesión de 302 turnos puede acumular <strong>33 millones de tokens</strong> de input: unos <strong>9,44 USD</strong> a precios públicos de API, o <strong>0,031 USD por turno</strong>. La mayor parte no es trabajo nuevo, es contexto reenviado.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Qué es la caché de prompt y por qué no me acierta?</summary>
+      <p>Reutiliza el prefijo idéntico de una conversación y lo cobra a una fracción del precio (típicamente el 10% del input). Se invalida cuando cambia algo al principio del contexto: editar un mensaje previo, cambiar el system prompt o reordenar archivos.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Se suben mis logs a algún servidor?</summary>
+      <p>No. El análisis se ejecuta en la pestaña del navegador y se puede cortar la red sin que deje de funcionar. Si creas cuenta, solo se guardan agregados numéricos: coste, tokens por modelo y códigos de hallazgo.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Qué agentes soporta TokenSaver?</summary>
+      <p>Codex CLI, Claude Code, GitHub Copilot CLI, Grok Build, Hermes, OpenClaw y cualquier JSONL con contadores de tokens (<code>input_tokens</code>, <code>output_tokens</code>, <code>prompt_tokens</code> o <code>completion_tokens</code>).</p>
+    </details>
+
+
+    <details class="faq-item">
+      <summary>¿Cuánto cuesta TokenSaver y qué incluye?</summary>
+      <p>El análisis es <strong>gratis y sin cuenta</strong>. Lo que se paga es el arreglo: <strong>4,99 USD por informe</strong> o <strong>14,99 USD el pack de 10</strong> (menos de 1,50 por informe). Cada arreglo incluye los pasos concretos, el prompt hecho con tus números y la skill descargable para tu agente. Sin suscripción.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Sirve para Hermes o OpenClaw, no solo para Codex y Claude Code?</summary>
+      <p>Sí. Lee Codex CLI, Claude Code, GitHub Copilot CLI, Grok Build, Hermes, OpenClaw y cualquier JSONL con contadores de tokens. Los agentes con muchas herramientas suelen ser los que más gastan por turno, así que ahí el ahorro detectado es mayor.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Necesito subir mi código o mis claves?</summary>
+      <p>No. El análisis se ejecuta en tu navegador y puedes cortar la red a mitad sin que deje de funcionar. Si creas cuenta solo se guardan agregados numéricos: coste, tokens por modelo y códigos de hallazgo. Nunca rutas, mensajes, código ni claves.</p>
+    </details>
+
+    <p class="micro">Guía completa con metodología y tabla de costes: <a href="./guia.html">cómo ahorrar tokens en agentes de código</a>.</p>
+  </section>
+
+  <!-- ── PRIVACIDAD ───────────────────────────────── -->
+  <section id="datos" class="privacy">
+    <div class="section-head">
+      <h2>Tus datos</h2>
+      <p>Lo que se queda en tu ordenador y lo que viaja, sin letra pequeña.</p>
+    </div>
+    <div class="privacy-hero">
+      <span class="privacy-shield" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3l7 3v5.5c0 4.4-3 8.2-7 9.5-4-1.3-7-5.1-7-9.5V6l7-3z" />
+          <path d="M9 12l2 2 4-4" />
+        </svg>
+      </span>
+      <div>
+        <h3>Tu código no sale de tu ordenador</h3>
+        <p>El análisis corre en la pestaña con JavaScript local. Puedes cortar la red a mitad y el informe se genera igual.</p>
+        <div class="privacy-badges">
+          <span>✓ zero server upload</span>
+          <span>✓ motor local</span>
+          <span>✓ 100% offline</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="privacy-grid">
+      <div class="privacy-card">
+        <h3>No sale de tu navegador</h3>
+        <p>Tus logs, tu código y tus prompts <strong>no se suben</strong>. El análisis se ejecuta en la pestaña con JavaScript local: puedes cortar la red y sigue funcionando.</p>
+      </div>
+      <div class="privacy-card">
+        <h3>Si creas cuenta, esto es lo único que se guarda</h3>
+        <p>Números agregados: coste, tokens por modelo, códigos de hallazgo y fecha. <strong>Nunca</strong> nombres de archivo, rutas, mensajes, código ni claves.</p>
+      </div>
+      <div class="privacy-card">
+        <h3>Para qué</h3>
+        <p>Para mostrarte el arreglo, llevar tu saldo de informes y enviarte el aviso de gasto si lo activas. Nada de publicidad ni venta a terceros.</p>
+      </div>
+      <div class="privacy-card">
+        <h3>Tus derechos</h3>
+        <p>Borrado de cuenta y datos cuando quieras, escribiendo a abriendo un aviso en <a href="https://github.com/Molina8/tokensaver/issues" target="_blank" rel="noopener">el repositorio</a>. Sin cuenta, no hay nada guardado. Cumplimos RGPD: base legal, consentimiento y derecho de supresión.</p>
+      </div>
+    </div>
+    <p class="micro">Los importes son estimaciones a precio de API con tarifas públicas editables, no una factura.</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>TokenSaver · producto de la casa · <span class="mono">v0.1</span></p>
+  <p class="micro">No subimos tu código. Los informes se calculan en tu navegador.</p>
+</footer>
+
+<!-- ── MODAL AUTH ─────────────────────────────────── -->
+<dialog id="auth-dialog" class="dialog">
+  <button class="dialog-close" id="close-auth" aria-label="Cerrar">×</button>
+  <h2 id="auth-title">Entrar</h2>
+  <p class="micro" id="auth-sub">Guarda tus informes y recibe alertas cuando el gasto se dispare.</p>
+  <form id="auth-form" class="form">
+    <label>Email <input type="email" name="email" required autocomplete="email" placeholder="tu@email.com" /></label>
+    <label>Contraseña <input type="password" name="password" required minlength="8" autocomplete="current-password" placeholder="mínimo 8 caracteres" /></label>
+
+    <!-- solo al crear cuenta -->
+    <div class="signup-only" data-signup-only hidden>
+      <label>Repite la contraseña
+        <input type="password" name="password2" autocomplete="new-password" placeholder="otra vez, igual" />
+      </label>
+      <ul class="pw-rules" id="pw-rules">
+        <li data-rule="len"><span class="dot"></span>8 caracteres mínimo</li>
+        <li data-rule="upper"><span class="dot"></span>Una mayúscula</li>
+        <li data-rule="num"><span class="dot"></span>Un número</li>
+        <li data-rule="match"><span class="dot"></span>Las dos contraseñas coinciden</li>
+      </ul>
+    </div>
+
+    <button class="btn btn-primary" type="submit" id="auth-submit">Entrar</button>
+  </form>
+  <p class="auth-msg" id="auth-msg" hidden></p>
+  <p class="micro center"><span id="toggle-prefix">¿No tienes cuenta?</span> <a href="#" id="toggle-mode">Crear una</a></p>
+</dialog>
+
+<script type="module" src="./app.js?v=mvsn4t7b"></script>
+</body>
+</html>

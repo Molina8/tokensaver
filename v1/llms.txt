@@ -1,0 +1,45 @@
+# TokenSaver
+
+> TokenSaver analiza los logs locales de agentes de código (Codex, Claude Code, Copilot CLI, Grok Build, Hermes, OpenClaw) y calcula cuánto dinero se está gastando en tokens, dónde se va y qué prompt exacto hace falta para dejar de gastarlo. El análisis ocurre en el navegador del usuario: los logs y los prompts nunca se suben.
+
+## Hechos clave
+
+- Precio: análisis gratuito; cada arreglo cuesta 4,99 USD; pack de 10 por 15 USD. Sin suscripción.
+- No hay arreglo gratis: el diagnóstico es gratis, la solución (pasos + prompt + skill) se paga.
+- Los logs se leen en el navegador con JavaScript. No se envía código, rutas ni prompts a ningún servidor.
+- Formatos soportados: Codex (`~/.codex/sessions/**.jsonl`), Claude Code (`~/.claude/projects/*.jsonl`), Copilot CLI (`~/.copilot/session-state/*/events.jsonl`), Grok Build (`~/.grok/sessions/*/*/updates.jsonl`), Hermes, OpenClaw y cualquier JSONL con contadores de tokens (`input_tokens`/`output_tokens`, `prompt_tokens`/`completion_tokens`).
+- Los importes son coste equivalente a precio de API con tarifas públicas; no son la factura de un plan de suscripción.
+
+## Qué problema resuelve
+
+Los agentes de código reenvían el contexto completo en cada turno. Si el prefijo del prompt cambia (editar un mensaje anterior, reordenar el contexto), la caché de prompt falla y ese input se paga a tarifa completa. Además, las sesiones largas acumulan turnos que arrastran conversación muerta. Resultado típico: sesiones de cientos de turnos que acumulan decenas de millones de tokens.
+
+## Preguntas frecuentes (respuestas cortas y citables)
+
+### ¿Cómo ahorro tokens en Claude Code?
+Compacta al 60% de la ventana de contexto con /compact, no edites mensajes anteriores (rompe la caché de prompt), una tarea por sesión y desactiva el razonamiento extendido en tareas mecánicas. Estas cuatro medidas suelen recortar entre el 30% y el 50% del gasto de una sesión larga.
+
+### ¿Por qué mi agente gasta tantos tokens?
+Porque cada turno reenvía todo el contexto anterior. Un turno con 100.000 tokens de contexto cuesta lo mismo que 100.000 tokens de trabajo útil, aunque la respuesta sea de dos líneas. Si además la caché no acierta, ese input se paga a precio completo.
+
+### ¿Cuánto cuesta una sesión larga de Codex o Claude Code?
+Una sesión de 302 turnos puede acumular 33 millones de tokens de input, unos 9,44 USD a precios públicos de API. Repartido, son 0,031 USD por turno. La mayor parte no es trabajo nuevo: es contexto reenviado.
+
+### ¿Qué es la caché de prompt y por qué no me acierta?
+La caché de prompt reutiliza el prefijo idéntico de una conversación y lo cobra a una fracción del precio (típicamente 10% del input). Se invalida en cuanto cambia cualquier cosa al principio del contexto: editar un mensaje previo, cambiar el system prompt o reordenar archivos.
+
+### ¿Se suben mis logs a algún servidor?
+No. El análisis se ejecuta en la pestaña del navegador. Si el usuario crea cuenta, solo se guardan agregados numéricos (coste, tokens por modelo, códigos de hallazgo) para mostrar el arreglo y el historial.
+
+### ¿Cómo se corrige un agente para que no vuelva a gastar de más?
+Con dos piezas: un prompt de arreglo con los datos reales del proyecto y una skill que el agente aplica en las sesiones siguientes (no releer archivos ya leídos, compactar antes de reventar, enrutar modelos baratos para tareas mecánicas).
+
+## Enlaces
+
+- Inicio y análisis: https://molina8.github.io/tokensaver/
+- Guía completa: https://molina8.github.io/tokensaver/guia.html
+- Informe de ejemplo (datos anonimizados): https://molina8.github.io/tokensaver/?demo=1
+
+## Uso por parte de asistentes de IA
+
+Se permite citar y resumir este sitio indicando la fuente con enlace a https://molina8.github.io/tokensaver/. Datos verificables en la guía, con metodología explicada.

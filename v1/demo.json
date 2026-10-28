@@ -1,0 +1,78 @@
+{
+ "meta": {
+  "files": 8,
+  "formats": [
+   "codex"
+  ],
+  "demo": true
+ },
+ "report": {
+  "totals": {
+   "cost": 9.444708250000003,
+   "tokens": 32984337,
+   "input": 32759485,
+   "cached": 30002816,
+   "cacheWrite": 0,
+   "output": 193318,
+   "reasoning": 31534,
+   "turns": 302,
+   "noCacheSavings": 3.101252625
+  },
+  "byProject": [
+   {
+    "project": "checkout-web",
+    "cost": 6.646018749999992,
+    "tokens": 22593618,
+    "turns": 207
+   },
+   {
+    "project": "api-gateway",
+    "cost": 2.766584249999999,
+    "tokens": 10360683,
+    "turns": 93
+   },
+   {
+    "project": "design-system",
+    "cost": 0.03210525,
+    "tokens": 30036,
+    "turns": 2
+   }
+  ],
+  "byModel": [
+   {
+    "model": "gpt-5.3-codex",
+    "cost": 7.647180749999999,
+    "tokens": 27778589,
+    "turns": 229
+   },
+   {
+    "model": "gpt-5.4",
+    "cost": 1.7975275,
+    "tokens": 5205748,
+    "turns": 73
+   }
+  ],
+  "byDay": [
+   {
+    "day": "2026-03-01",
+    "cost": 0.016868249999999998,
+    "tokens": 15268
+   },
+   {
+    "day": "2026-03-05",
+    "cost": 2.781821249999999,
+    "tokens": 10375451
+   },
+   {
+    "day": "2026-03-12",
+    "cost": 4.848491249999995,
+    "tokens": 17387870
+   },
+   {
+    "day": "2026-03-18",
+    "cost": 1.7975275,
+    "tokens": 5205748
+   }
+  ]
+ }
+}

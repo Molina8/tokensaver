@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cómo ahorrar tokens en agentes de código (Codex, Claude Code, Copilot, Grok) — TokenSaver</title>
+<meta name="description" content="Guía práctica y con datos reales: por qué tu agente de código gasta tantos tokens, cómo funciona la caché de prompt, cuánto cuesta una sesión larga y los cuatro ajustes que recortan el gasto entre un 30% y un 50%." />
+<link rel="canonical" href="https://molina8.github.io/tokensaver/guia.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./skin.css?v=mvs48s31" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Cómo ahorrar tokens en agentes de código",
+      "description": "Por qué los agentes de código gastan de más, cómo funciona la caché de prompt y los ajustes que recortan el gasto entre un 30% y un 50%.",
+      "inLanguage": "es",
+      "datePublished": "2026-10-27",
+      "dateModified": "2026-10-27",
+      "author": { "@type": "Organization", "name": "TokenSaver", "url": "https://molina8.github.io/tokensaver/" },
+      "publisher": { "@type": "Organization", "name": "TokenSaver" },
+      "mainEntityOfPage": "https://molina8.github.io/tokensaver/guia.html"
+    },
+    {
+      "@type": "HowTo",
+      "name": "Cómo reducir el gasto de tokens de un agente de código",
+      "totalTime": "PT10M",
+      "step": [
+        { "@type": "HowToStep", "name": "Mide el gasto real", "text": "Analiza los logs locales del agente para ver coste por proyecto, por modelo y por día." },
+        { "@type": "HowToStep", "name": "Deja de invalidar la caché", "text": "No edites mensajes anteriores ni reordenes el contexto: el prefijo debe ser idéntico entre turnos." },
+        { "@type": "HowToStep", "name": "Compacta a tiempo", "text": "Resume la sesión al 60% de la ventana de contexto y abre una sesión nueva por tarea." },
+        { "@type": "HowToStep", "name": "Enruta los modelos", "text": "Modelo barato para ediciones y tests; el caro solo para arquitectura y depuración difícil." },
+        { "@type": "HowToStep", "name": "Fija el hábito", "text": "Entrega al agente una skill con estas reglas para que las aplique en todas las sesiones siguientes." }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cómo ahorro tokens en Claude Code?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Compacta al 60% de la ventana de contexto con /compact, no edites mensajes anteriores porque rompe la caché de prompt, trabaja una tarea por sesión y desactiva el razonamiento extendido en tareas mecánicas. Estas cuatro medidas suelen recortar entre el 30% y el 50% del gasto de una sesión larga." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Por qué mi agente gasta tantos tokens?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Porque cada turno reenvía todo el contexto anterior. Un turno con 100.000 tokens de contexto cuesta lo mismo que 100.000 tokens de trabajo útil, aunque la respuesta sea de dos líneas. Si la caché no acierta, ese input se paga a precio completo." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto cuesta una sesión larga de Codex o Claude Code?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Una sesión de 302 turnos puede acumular 33 millones de tokens de input, unos 9,44 USD a precios públicos de API, es decir 0,031 USD por turno. La mayor parte no es trabajo nuevo: es contexto reenviado." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué es la caché de prompt y por qué no me acierta?",
+          "acceptedAnswer": { "@type": "Answer", "text": "La caché de prompt reutiliza el prefijo idéntico de una conversación y lo cobra a una fracción del precio, típicamente el 10% del input. Se invalida cuando cambia algo al principio del contexto: editar un mensaje previo, cambiar el system prompt o reordenar archivos." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="./"><span class="brand-mark">◈</span><span class="brand-name">TokenSaver</span></a>
+  <nav class="nav-links">
+    <a href="./#como">Cómo funciona</a>
+    <a href="./#precios">Precios</a>
+    <a href="./guia.html">Guía</a>
+    <button class="btn btn-ghost" id="open-auth">Entrar</button>
+  </nav>
+</header>
+
+<main>
+  <article class="guide">
+    <p class="eyebrow"><span class="dot"></span> Guía · datos reales de 8 sesiones analizadas</p>
+    <h1>Cómo ahorrar tokens en agentes de código</h1>
+    <p class="lede">
+      Si usas Codex, Claude Code, Copilot CLI, Grok Build, Hermes u OpenClaw, tu factura no la decide cuánto trabajas:
+      la decide <strong>cuánto contexto reenvías</strong>. Esta guía explica por qué pasa y qué se puede recortar.
+    </p>
+
+    <h2 id="por-que">¿Por qué mi agente gasta tantos tokens?</h2>
+    <p>
+      Porque cada turno reenvía todo el contexto anterior. Un turno con 100.000 tokens de contexto cuesta lo mismo que
+      100.000 tokens de trabajo útil, aunque la respuesta sea de dos líneas. En los logs analizados, una sesión de
+      <strong>302 turnos acumuló 33 millones de tokens</strong>, de los cuales solo 193.000 fueron salida: menos del 1%.
+    </p>
+
+    <h2 id="cache">¿Qué es la caché de prompt y por qué no me acierta?</h2>
+    <p>
+      La caché de prompt reutiliza el prefijo idéntico de una conversación y lo cobra a una fracción del precio
+      (típicamente el 10% del input). Se invalida cuando cambia algo al principio del contexto: editar un mensaje previo,
+      cambiar el system prompt o reordenar archivos. En el caso analizado el acierto era del <strong>91,6%</strong>, y aun así
+      quedaban <strong>2,7 millones de tokens pagados a precio completo</strong>: 3,10 USD tirados solo en ese hueco.
+    </p>
+
+    <table>
+      <thead>
+        <tr><th>Qué</th><th>Ejemplo medido</th><th>Coste a precio de API</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>302 turnos, 33 M tokens</td><td>Sesión larga de agente</td><td>9,44 USD</td></tr>
+        <tr><td>Input sin caché</td><td>2,7 M tokens a precio completo</td><td>+3,10 USD</td></tr>
+        <tr><td>Razonamiento</td><td>31.534 tokens de thinking</td><td>0,32 USD</td></tr>
+        <tr><td>Turno medio</td><td>0,031 USD/turno</td><td>—</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="arreglos">Los cinco arreglos que más recortan</h2>
+    <ol>
+      <li><strong>No edites mensajes anteriores.</strong> Rompe la caché y todo el contexto vuelve a precio completo.</li>
+      <li><strong>Una tarea, una sesión.</strong> Cierra con un resumen de 120-200 palabras y abre limpio.</li>
+      <li><strong>Compacta al 60%, no al 100%.</strong> Cuando revienta la ventana, la compactación cuesta más y peor.</li>
+      <li><strong>Razonamiento solo cuando haga falta.</strong> Renombrar variables no necesita 30 segundos de thinking, y se paga como salida.</li>
+      <li><strong>Enruta modelos.</strong> El barato para editar y testear; el caro para arquitectura y bugs difíciles.</li>
+    </ol>
+
+    <h2 id="medir">¿Cómo sé cuánto estoy gastando de verdad?</h2>
+    <p>
+      Los propios agentes escriben en disco el uso de tokens de cada turno. Codex en
+      <code>~/.codex/sessions/**/rollout-*.jsonl</code>, Claude Code en <code>~/.claude/projects/*.jsonl</code>, Copilot CLI en
+      <code>~/.copilot/session-state/*/events.jsonl</code> y Grok Build en <code>~/.grok/sessions/*/*/updates.jsonl</code>.
+      TokenSaver los lee <strong>en el navegador</strong> y los convierte en dólares por proyecto, modelo y día.
+      No se sube ningún archivo: se puede cortar la red y el análisis sigue funcionando.
+    </p>
+
+    <h2 id="skill">¿Cómo evito que vuelva a pasar en las próximas sesiones?</h2>
+    <p>
+      Con una skill: un archivo que el agente carga al empezar y que le obliga a no releer archivos ya leídos, compactar a
+      tiempo, no reescribir mensajes anteriores y enrutar modelos. TokenSaver genera esa skill junto al arreglo, escrita
+      para el agente concreto que uses.
+    </p>
+
+    <div class="guide-cta">
+      <a class="btn btn-primary" href="./">Analizar mis logs gratis</a>
+      <span class="micro">Sin cuenta · sin subir código · informe en 5 segundos</span>
+    </div>
+
+    <p class="micro">
+      Metodología: importes calculados con tarifas públicas de API por modelo (input, output, lectura y escritura de caché),
+      sobre sesiones reales anonimizadas. No son la factura de un plan de suscripción. Fecha de los datos: marzo de 2026.
+    </p>
+  </article>
+</main>
+
+<footer class="foot">
+  <p>TokenSaver · <span class="mono">v0.1</span></p>
+  <p class="micro">Los logs no salen de tu navegador.</p>
+</footer>
+</body>
+</html>
